@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.moiassignmienteduos.R;
 import com.example.moiassignmienteduos.model.Movie;
+import com.example.moiassignmienteduos.views.FavoriteDisplayActivity;
 import com.example.moiassignmienteduos.views.MainActivity;
 import com.example.moiassignmienteduos.views.MovieDisplayActivity;
 
@@ -25,11 +26,13 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
     private final Context context;
     private List<Movie> movieList;
+    private String mode;
 
     // Constructor to receive the movie list
-    public MovieRecyclerViewAdapter(Context context, List<Movie> movieList){
+    public MovieRecyclerViewAdapter(Context context, List<Movie> movieList,String mode){
         this.movieList = movieList;
         this.context = context;
+        this.mode = mode;  // Set mode
     }
 
     // Inflate the item layout and return a new ViewHolder
@@ -53,13 +56,17 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
                 .placeholder(R.drawable.placeholder)
                 .into(holder.poster);
 
-        holder.button.setOnClickListener(View -> {
-            Intent intentObj = new Intent(context, MovieDisplayActivity.class);
-            intentObj.putExtra("id", movie.getImdbID());
-            //sending intent
-            context.startActivity(intentObj);
-        });
+        holder.button.setOnClickListener(v -> {
+            Intent intent;
+            if (mode.equals("search")) {
+                intent = new Intent(context, MovieDisplayActivity.class);
 
+            } else { // mode is "favorites"
+                intent = new Intent(context, FavoriteDisplayActivity.class);
+            }
+            intent.putExtra("id", movie.getImdbID());
+            context.startActivity(intent);
+        });
     }
 
     // Return total number of items

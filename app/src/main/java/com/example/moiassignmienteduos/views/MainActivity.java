@@ -1,17 +1,18 @@
 package com.example.moiassignmienteduos.views;
 
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.moiassignmienteduos.R;
 import com.example.moiassignmienteduos.adapter.MovieRecyclerViewAdapter;
 import com.example.moiassignmienteduos.databinding.ActivityMainBinding;
+import com.example.moiassignmienteduos.fragments.FavoritesFragment;
+import com.example.moiassignmienteduos.fragments.SearchFragment;
 import com.example.moiassignmienteduos.viewModel.SearchViewModel;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,45 +28,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.textInput.requestFocus();
+        // for initial loading
+        FragmentManager fm=getSupportFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
 
-        // ViewModel instance
-        searchViewModelInstance = new ViewModelProvider(this).get(SearchViewModel.class);
+        ft.replace(R.id.fragLayout,new SearchFragment());
 
-        // Set up RecyclerView
-        adapterInstance = new MovieRecyclerViewAdapter(this, new ArrayList<>());
-        binding.recyclerViewMovieList.setLayoutManager(new LinearLayoutManager(this));
-        binding.recyclerViewMovieList.setAdapter(adapterInstance);
+        ft.commit();
+        //to show search fragment
+        binding.Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm=getSupportFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
 
-        // Observe movie list
-        searchViewModelInstance.getMovieListLiveData().observe(this, movieList -> {
-            if (movieList != null) {
-                adapterInstance.updateMovieList(movieList);
-                if (searchInitiated) {
-                    if (!movieList.isEmpty()) {
-                        Toast.makeText(this, "Movies found: " + movieList.size(), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "No movies found", Toast.LENGTH_SHORT).show();
-                    }
-                    searchInitiated = false;
-                }
-            }
+                ft.replace(R.id.fragLayout,new SearchFragment());
+
+                ft.commit();}
         });
 
-        // Observe error messages
-        searchViewModelInstance.getErrorLiveData().observe(this, errorMsg -> {
-            Toast.makeText(this, "Error: " + errorMsg, Toast.LENGTH_SHORT).show();
-        });
+        //to show favorites fragment
+        binding.Favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm=getSupportFragmentManager();
+                FragmentTransaction ft=fm.beginTransaction();
 
-        // Search button click
-        binding.searchButton.setOnClickListener(v -> {
-            String userSearch = binding.textInput.getText().toString().trim();
-            if (!userSearch.isEmpty()) {
-                searchInitiated = true; //  flag true for upcoming result
-                searchViewModelInstance.searchingMovieFunction(userSearch);
-            } else {
-                Toast.makeText(this, "Please enter a movie name.", Toast.LENGTH_SHORT).show();
-            }
+                ft.replace(R.id.fragLayout,new FavoritesFragment());
+
+                ft.commit();}
         });
     }
 }
