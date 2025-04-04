@@ -1,5 +1,6 @@
 package com.example.moiassignmienteduos.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +14,7 @@ import com.example.moiassignmienteduos.databinding.ActivityMainBinding;
 import com.example.moiassignmienteduos.fragments.FavoritesFragment;
 import com.example.moiassignmienteduos.fragments.SearchFragment;
 import com.example.moiassignmienteduos.viewModel.SearchViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,11 +22,16 @@ public class MainActivity extends AppCompatActivity {
     private SearchViewModel searchViewModelInstance;
     private MovieRecyclerViewAdapter adapterInstance;
 
+    FirebaseAuth myAuth;
+
     //  Flag to avoid repeating the toast for each LiveData update
     private boolean searchInitiated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //instantiating FireBaseAuth obj
+        myAuth = FirebaseAuth.getInstance();
+
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -57,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.fragLayout,new FavoritesFragment());
 
                 ft.commit();}
+        });
+
+        //implementing logout functionality
+        binding.signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAuth.signOut();
+                Intent intentObj = new Intent(getApplicationContext(), Login.class);
+                startActivity(intentObj);
+                finish();
+            }
         });
     }
 }

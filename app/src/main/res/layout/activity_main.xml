@@ -5,30 +5,26 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFADD8E6"
+    android:background="#FF000435"
     tools:context=".views.MainActivity">
-
-    <Button
-        android:id="@+id/Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="24dp"
-        android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    the original color is FFADD8E6-->
 
     <Button
         android:id="@+id/Favorites"
-        android:layout_width="110dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="23dp"
+        android:layout_width="134dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FFADD8E6"
+        android:fontFamily="cursive"
         android:text="Favorites"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Search" />
+        app:layout_constraintStart_toEndOf="@+id/signOutButton" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragLayout"
@@ -43,4 +39,37 @@
         app:layout_constraintVertical_bias="0.0">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FFADD8E6"
+        android:fontFamily="cursive"
+        android:text="Logout"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FFADD8E6"
+        android:fontFamily="cursive"
+        android:text="Search"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signOutButton"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
