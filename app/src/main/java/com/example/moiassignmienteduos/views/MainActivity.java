@@ -1,12 +1,9 @@
 package com.example.moiassignmienteduos.views;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -20,8 +17,6 @@ import com.example.moiassignmienteduos.fragments.SearchFragment;
 import com.example.moiassignmienteduos.viewModel.SearchViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import com.example.moiassignmienteduos.views.Login;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -40,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = myAuth.getCurrentUser();
         if (user == null) {
             // No user then Go back to login. This is because jesus christ t
-            startActivity(new Intent(this, Login.class));
+            startActivity(new Intent(this, LoginView.class));
             finish();
             //stops this code from actually creating the view further
             return;
@@ -88,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myAuth.signOut();
-                Intent intentObj = new Intent(getApplicationContext(), Login.class);
+                Intent intentObj = new Intent(getApplicationContext(), LoginView.class);
                 startActivity(intentObj);
                 //using finish here so that the onCreate happens with the Login (i.e everyone gets signed out and no one gets transported to the MainActivity)
                 finish();

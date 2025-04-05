@@ -15,10 +15,10 @@
         android:theme="@style/Theme.MoiAssignmienteDuos"
         tools:targetApi="31">
         <activity
-            android:name=".views.Register"
+            android:name=".views.RegisterView"
             android:exported="false" />
         <activity
-            android:name=".views.Login"
+            android:name=".views.LoginView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
