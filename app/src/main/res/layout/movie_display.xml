@@ -103,9 +103,9 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="172dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="34dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="24dp"
             android:backgroundTint="#FFADD8E6"
             android:fontFamily="monospace"
             android:includeFontPadding="false"
@@ -118,6 +118,22 @@
             app:iconSize="30dp"
             app:iconTint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/favoriteButton"
+            app:layout_constraintTop_toBottomOf="@+id/plotTextView" />
+
+        <Button
+            android:id="@+id/favoriteButton"
+            android:layout_width="145dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="88dp"
+            android:backgroundTint="#FFADD8E6"
+            android:fontFamily="monospace"
+            android:text="Favorite"
+            android:textColor="@color/black"
+            app:icon="@android:drawable/btn_star_big_on"
+            app:iconTint="#9E6716"
+            app:layout_constraintEnd_toStartOf="@+id/backButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/plotTextView" />
 
