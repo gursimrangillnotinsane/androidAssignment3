@@ -26,6 +26,9 @@ public class FavoritesDisplayViewModel extends ViewModel {
         repositoryObj.getFavoriteDetails(imdbID);
     }
 
+    public void deleteFavoriteDetails(String imdbID) {
+        repositoryObj.deleteFavorite(imdbID);
+    }
     public LiveData<Movie> getMovieLiveData(){
         return movieObjLiveData;
     }

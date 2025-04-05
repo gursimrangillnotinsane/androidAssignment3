@@ -1,5 +1,7 @@
 package com.example.moiassignmienteduos.repository;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.moiassignmienteduos.model.Movie;
@@ -35,6 +37,18 @@ public class FavoritesDisplayRepository {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Movie favoriteMovie = documentSnapshot.toObject(Movie.class);
                 placeHolderMovieData.postValue(favoriteMovie);
+            }
+        });
+    }
+
+    public void deleteFavorite(String imdbID) {
+        FirebaseUser firebaseUser = auth.getInstance().getCurrentUser();
+        CollectionReference colUserRef = colRef.document(firebaseUser.getUid()).collection("favorites");
+
+        colUserRef.document(imdbID).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("Blargh", "Look how they massacred my boy");
             }
         });
     }

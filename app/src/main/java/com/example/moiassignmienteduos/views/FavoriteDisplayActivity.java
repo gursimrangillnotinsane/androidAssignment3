@@ -1,6 +1,9 @@
 package com.example.moiassignmienteduos.views;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -42,6 +45,12 @@ public class FavoriteDisplayActivity extends AppCompatActivity {
         });
         viewModelObj.fetchMovieDetails(imdbID);
         binding.backButton.setOnClickListener(v -> {
+            finish();
+        });
+
+        binding.deleteButton.setOnClickListener(view -> {
+            viewModelObj.deleteFavoriteDetails(imdbID);
+            Toast.makeText(getApplicationContext(), "Movie Unfavorited!", LENGTH_SHORT).show();
             finish();
         });
     }
