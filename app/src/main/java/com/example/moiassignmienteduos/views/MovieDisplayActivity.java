@@ -1,5 +1,9 @@
 package com.example.moiassignmienteduos.views;
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -39,6 +43,11 @@ public class MovieDisplayActivity extends AppCompatActivity {
                         .load(movie.getPoster())
                         .placeholder(R.drawable.placeholder)
                         .into(binding.posterImageView);
+
+                binding.favoriteButton.setOnClickListener(view -> {
+                    viewModelObj.setFavoriteMovie(movie.getTitle(), movie.getYear(), imdbID, movie.getPoster(), movie.getPlot(), movie.getRating(), movie.getLanguage());
+                    Toast.makeText(getApplicationContext(), "Movie Favorited!", LENGTH_SHORT).show();
+                });
             }
         });
         viewModelObj.fetchMovieDetails(imdbID);

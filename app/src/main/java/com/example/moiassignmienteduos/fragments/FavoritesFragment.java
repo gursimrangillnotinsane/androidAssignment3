@@ -53,10 +53,17 @@ public class FavoritesFragment extends Fragment {
             }
         });
 
-        // Observe errors
         favoritesViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), errorMsg ->
                 Toast.makeText(requireContext(), "Error: " + errorMsg, Toast.LENGTH_SHORT).show()
         );
+        //Now moved to onResume
+        //favoritesViewModel.getFavoriteMovieFun();
+    }
+
+    //We need to override onResume so that if we delete a favorite, the change shows
+    @Override
+    public void onResume() {
+        super.onResume();
         favoritesViewModel.getFavoriteMovieFun();
     }
 }

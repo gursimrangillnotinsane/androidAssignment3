@@ -57,6 +57,10 @@ public class Movie {
         return imdbID;
     }
 
+    public void setImdbID(String id) {
+        this.imdbID = id;
+    }
+
     public String getPoster() {
         return poster;
     }

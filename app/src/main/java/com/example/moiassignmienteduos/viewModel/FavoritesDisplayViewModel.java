@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel;
 import com.example.moiassignmienteduos.model.Movie;
 import com.example.moiassignmienteduos.repository.FavoritesDisplayRepository;
 
-public class FavoriteDetailsViewModel extends ViewModel {
+public class FavoritesDisplayViewModel extends ViewModel {
 
     private MutableLiveData<Movie> movieObjLiveData;
     private MutableLiveData<String> errorLiveData;
 
     private FavoritesDisplayRepository repositoryObj;
 
-    public FavoriteDetailsViewModel() {
+    public FavoritesDisplayViewModel() {
         //instantiating the vars
         movieObjLiveData = new MutableLiveData<>();
         errorLiveData = new MutableLiveData<>();

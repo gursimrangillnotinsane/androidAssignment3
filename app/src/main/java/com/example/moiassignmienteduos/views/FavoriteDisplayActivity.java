@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.moiassignmienteduos.R;
 import com.example.moiassignmienteduos.databinding.ActivityFavoriteDisplayBinding;
-import com.example.moiassignmienteduos.viewModel.FavoriteDetailsViewModel;
+import com.example.moiassignmienteduos.viewModel.FavoritesDisplayViewModel;
 
 public class FavoriteDisplayActivity extends AppCompatActivity {
 
     ActivityFavoriteDisplayBinding binding;
 
-    FavoriteDetailsViewModel viewModelObj;
+    FavoritesDisplayViewModel viewModelObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class FavoriteDisplayActivity extends AppCompatActivity {
 
         String imdbID = getIntent().getStringExtra("id");
 
-        viewModelObj = new ViewModelProvider(this).get(FavoriteDetailsViewModel.class);
+        viewModelObj = new ViewModelProvider(this).get(FavoritesDisplayViewModel.class);
 
         viewModelObj.getMovieLiveData().observe(this,movie->{
             if(movie!=null){
