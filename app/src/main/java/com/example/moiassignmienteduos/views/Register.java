@@ -42,7 +42,8 @@ public class Register extends AppCompatActivity {
         binding.loginPageLinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish gets rid of the stacked intent that we just sent from the login page to go to the register page.
+                Intent intentObj = new Intent(getApplicationContext(), Login.class);
+                startActivity(intentObj);
                 finish();
             }
         });
@@ -84,7 +85,8 @@ public class Register extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(Register.this, "User Registration successful with id " + user.getUid(), Toast.LENGTH_SHORT).show();
 
-                    //using finish to go back to the login page by terminating the stacked register page view.
+                    Intent intentObj = new Intent(getApplicationContext(), Login.class);
+                    startActivity(intentObj);
                     finish();
                 }
                 else{
