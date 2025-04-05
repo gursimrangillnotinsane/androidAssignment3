@@ -53,5 +53,10 @@ public class FavoriteDisplayActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Movie Unfavorited!", LENGTH_SHORT).show();
             finish();
         });
+
+        binding.updateButton.setOnClickListener(view -> {
+            viewModelObj.changeMovieDescription(imdbID, String.valueOf(binding.plotTextView.getText()));
+            Toast.makeText(getApplicationContext(), "Description Updated!", LENGTH_SHORT).show();
+        });
     }
 }

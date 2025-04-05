@@ -52,4 +52,16 @@ public class FavoritesDisplayRepository {
             }
         });
     }
+
+    public void updateDescription(String imdbID, String userText) {
+        FirebaseUser firebaseUser = auth.getInstance().getCurrentUser();
+        CollectionReference colUserRef = colRef.document(firebaseUser.getUid()).collection("favorites");
+
+        colUserRef.document(imdbID).update("plot", userText).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("Blargh", "New description added!");
+            }
+        });
+    }
 }
