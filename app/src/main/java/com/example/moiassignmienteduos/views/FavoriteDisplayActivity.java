@@ -35,7 +35,7 @@ public class FavoriteDisplayActivity extends AppCompatActivity {
                 binding.yearTextView.setText("Year:  " + movie.getYear());
                 binding.ratingTextView.setText("IMDB Rating:  " + movie.getRating());
                 binding.languageTextView.setText("Language:  " + movie.getLanguage());
-                binding.plotTextView.setText("Plot:  " + movie.getPlot());
+                binding.plotTextView.setText(movie.getPlot());
 
                 Glide.with(this)
                         .load(movie.getPoster())
