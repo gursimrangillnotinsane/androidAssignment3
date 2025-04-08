@@ -26,6 +26,12 @@ public class MovieDisplayViewModel extends ViewModel {
         repositoryObj.getMovieDetails(imdbID);
     }
 
+    public void setFavoriteMovie(String title, String year, String imdbID, String poster, String plot, String rating, String language) {
+        Movie favMovie = new Movie(title, year, poster, plot, rating, language);
+        favMovie.setImdbID(imdbID);
+        repositoryObj.addFavoriteMovie(favMovie);
+    }
+
     //creating getters for updated versions of both mutable objs
     public LiveData<Movie> getMovieLiveData(){
         return movieObjLiveData;

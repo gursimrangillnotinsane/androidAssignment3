@@ -34,6 +34,12 @@ public class Movie {
         this.imdbID = imdbIdParam;
     }
 
+    //Apparently need this empty constructor for pulling Movie data from DB
+    //Something to do with serialization/deserialization
+    public Movie() {
+
+    }
+
     //generating getters for each attribute
     public String getTitle() {
         return title;
@@ -49,6 +55,10 @@ public class Movie {
 
     public  String getImdbID() {
         return imdbID;
+    }
+
+    public void setImdbID(String id) {
+        this.imdbID = id;
     }
 
     public String getPoster() {
